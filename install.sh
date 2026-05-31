@@ -11,7 +11,7 @@ chmod -R ug+rwx bootstrap storage || true
 
 npm install --legacy-peer-deps --no-audit --progress=false
 npm run dev
-composer install --optimize-autoloader
+composer install --optimize-autoloader --no-plugins
 cp .env.example .env || true
 php artisan key:generate
 
