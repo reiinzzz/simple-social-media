@@ -1,25 +1,17 @@
 FROM ubuntu:22.04
 
-RUN echo "deb http://archive.ubuntu.com/ubuntu/ jammy main restricted universe multiverse" > /etc/apt/sources.list && \
-    echo "deb http://archive.ubuntu.com/ubuntu/ jammy-updates main restricted universe multiverse" >> /etc/apt/sources.list && \
-    echo "deb http://archive.ubuntu.com/ubuntu/ jammy-security main restricted universe multiverse" >> /etc/apt/sources.list
-
-RUN apt update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    apache2 \
+RUN apt update -y && \
+    DEBIAN_FRONTEND=noninteractive apt install -y apache2 \
     php \
+    npm \
     php-xml \
     php-mbstring \
     php-curl \
     php-mysql \
     php-gd \
     unzip \
-    nano \
+    nano  \
     curl && \
-    rm -rf /var/lib/apt/lists/*
-
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs && \
     rm -rf /var/lib/apt/lists/*
 
 RUN curl -sS https://getcomposer.org/installer -o composer-setup.php && \
